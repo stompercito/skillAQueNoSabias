@@ -30,7 +30,7 @@
                             "opacity": 100,
                             "width": "100%",
                             "height": "100%",
-                            "source": "https://d2o906d8ln7ui1.cloudfront.net/placeholder_image.png",
+                            "source": "https://tarea1web.s3.amazonaws.com/Captura.JPG",
                             "scale": "best-fill",
                             "align": "center",
                             "overlayColor": "rgba(0, 0, 0, 0.6)"
@@ -60,7 +60,7 @@
                                     "type": "Image",
                                     "width": "350dp",
                                     "height": "350dp",
-                                    "source": "https://d2o906d8ln7ui1.cloudfront.net/placeholder_image.png",
+                                    "source": "https://tarea1web.s3.amazonaws.com/Captura.JPG",
                                     "scale": "best-fill",
                                     "align": "center",
                                     "left": "550",
