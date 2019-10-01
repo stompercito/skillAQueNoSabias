@@ -241,22 +241,34 @@ const DatoSaludIntentHandler = {
     }
 };
 
-const DatoMexicanosIntentHandler = {
+const DatoMexicoIntentHandler = {
     canHandle(handlerInput) {
-        return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-            handlerInput.requestEnvelope.request.intent.name === 'MexicanosIntent';
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'MexicanosIntent';
     },
-    handle(handlerInput) {
-        num = getRandomInt(79, 92)
-        const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt('No te entendi, ¿Quieres saber mas?')
-            .getResponse();
+    
+    handle(handlerInput){
+         num = getRandomInt(79, 92);
+        const speechText =  dato[num] + '... ¿Quieres saber mas?';
+        
+        if (supportsAPL(handlerInput)){
+        return handlerInput.responseBuilder.speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./pantalla.json'),
+                datasources: {},}) 
+                .reprompt('No te entendi, ¿Quieres saber mas?').
+                getResponse();
+        }else{
+            return handlerInput.responseBuilder.speak(speechText).reprompt('No te entendi, ¿Quieres saber mas?').getResponse();
+        }
     }
+  
 };
 
-const DatoArgentinosIntentHandler = {
+
+const DatoArgentinaIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
             handlerInput.requestEnvelope.request.intent.name === 'ArgentinosIntent';
@@ -395,7 +407,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
+//This function it is use tu see if the divice supports APL
+function supportsAPL(handlerInput) { 
+    const supportedInterfaces = 
+    handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
+    const aplInterface = supportedInterfaces['Alexa.Presentation.APL'];
+    return aplInterface != null && aplInterface != undefined; 
+  }
 
 // This handler acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
@@ -409,7 +427,10 @@ exports.handler = Alexa.SkillBuilders.custom()
         DatoMatematicasIntentHandler,
         DatoAstronomiaIntentHandler,
         DatoSaludIntentHandler,
-        DatoMexicanosIntentHandler,
+        DatoMexicoIntentHandler,
+        DatoArgentinaIntentHandler,
+        DatoEstadosUnidosIntentHandler,
+        DatoInglaterraIntentHandler,
         DimeMasIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
