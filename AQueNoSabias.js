@@ -5,8 +5,8 @@ const Alexa = require('ask-sdk-core');
 var num = 0;
 
 //this are the words
-//var dato = new Array(50); 
-//var dato1 = new Array(50); 
+//var dato = new Array(50);
+//var dato1 = new Array(50);
 var dato = ["Sabías que Los árboles cada vez crecen más rápido y mueren antes.",
     "Sabías que las jirafas tienen la lengua azul.", "Sabías que el pulpo tiene 3 corazones",
     "Sabías que Los ojos de los pingüinos funcionan mejor bajo el agua que en el aire",
@@ -145,14 +145,14 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const speechText = 'En esta skill encontrarás datos curiosos sobre ciencia... puedes empezar diciendo... dime un dato curioso o simplemente puedes decir adiós para salir de la skill... para averiguar mas funciones puedes decir ayuda';
-        
+
         if (supportsAPL(handlerInput)){
         return handlerInput.responseBuilder.speak(speechText)
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
                 version: '1.0',
                 document: require('./mexicanos.json'),
-                datasources: {},}) 
+                datasources: {},})
                 .reprompt(speechText)
                 .getResponse();
         }else{
@@ -161,7 +161,7 @@ const LaunchRequestHandler = {
             .reprompt(speechText)
             .getResponse();
         }
-        
+
     }
 };
 
@@ -260,25 +260,25 @@ const DatoMexicoIntentHandler = {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && handlerInput.requestEnvelope.request.intent.name === 'MexicanosIntent';
     },
-    
+
     handle(handlerInput){
          num = getRandomInt(79, 92);
         const speechText =  dato[num] + '... ¿Quieres saber mas?';
-        
+
         if (supportsAPL(handlerInput)){
         return handlerInput.responseBuilder.speak(speechText)
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
                 version: '1.0',
-                document: require('./pantalla.json'),
-                datasources: {},}) 
+                document: require('./mexicanos.json'),
+                datasources: {},})
                 .reprompt('No te entendi, ¿Quieres saber mas?').
                 getResponse();
         }else{
             return handlerInput.responseBuilder.speak(speechText).reprompt('No te entendi, ¿Quieres saber mas?').getResponse();
         }
     }
-  
+
 };
 
 
@@ -290,10 +290,24 @@ const DatoArgentinaIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(79, 92)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .reprompt('No te entendi, ¿Quieres saber mas?')
-            .getResponse();
+
+        if(supportsAPL(handlerInput)){
+          return handlerInput.responseBuilder
+              .speak(speechText)
+              .addDirective({
+                  type: 'Alexa.Presentation.APL.RenderDocument',
+                  version: '1.0',
+                  document: require('./argentinos.json'),
+                  datasources: {},})
+              .reprompt('No te entendi, ¿Quieres saber mas?')
+              .getResponse();
+        }else{
+          return handlerInput.responseBuilder
+              .speak(speechText)
+              .reprompt('No te entendi, ¿Quieres saber mas?')
+              .getResponse();
+        }
+
     }
 };
 const DatoEstadosUnidosIntentHandler = {
@@ -422,11 +436,11 @@ function getRandomInt(min, max) {
 }
 
 //This function it is use tu see if the divice supports APL
-function supportsAPL(handlerInput) { 
-    const supportedInterfaces = 
+function supportsAPL(handlerInput) {
+    const supportedInterfaces =
     handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
     const aplInterface = supportedInterfaces['Alexa.Presentation.APL'];
-    return aplInterface != null && aplInterface != undefined; 
+    return aplInterface != null && aplInterface != undefined;
   }
 
 // This handler acts as the entry point for your skill, routing all request and response
