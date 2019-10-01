@@ -145,12 +145,26 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const speechText = 'En esta skill encontrarás datos curiosos sobre ciencia... puedes empezar diciendo... dime un dato curioso o simplemente puedes decir adiós para salir de la skill... para averiguar mas funciones puedes decir ayuda';
-        return handlerInput.responseBuilder
+        
+        if (supportsAPL(handlerInput)){
+        return handlerInput.responseBuilder.speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./mexicanos.json'),
+                datasources: {},}) 
+                .reprompt(speechText)
+                .getResponse();
+        }else{
+           return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
             .getResponse();
+        }
+        
     }
 };
+
 const DatoAleatorioIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
