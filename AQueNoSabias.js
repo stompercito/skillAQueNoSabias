@@ -180,6 +180,7 @@ const DatoAleatorioIntentHandler = {
     }
 };
 
+//In this intent we will send a call for each other intent, so this intent it is just a call for others
 const DatoNaturalezaIntentHandler = {
     canHandle(handlerInput) {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
@@ -188,10 +189,22 @@ const DatoNaturalezaIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(0, 16)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./naturaleza.json'),
+                datasources: {},})
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
+        }else{
+            return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }
     }
 };
 
@@ -203,10 +216,24 @@ const DatoQuimicaIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(16, 32)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./quimica.json'),
+                datasources: {},})
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
+        }else{
+            return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+            
+        }
+        
     }
 };
 
@@ -218,10 +245,23 @@ const DatoAstronomiaIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(32, 49)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./astronomia.json'),
+                datasources: {},})
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
+        }else{
+            return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }
+       
     }
 };
 
@@ -233,10 +273,23 @@ const DatoMatematicasIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(49, 68)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
             .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./matematicas.json'),
+                datasources: {},})
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }else{
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();  
+        }
+        
     }
 };
 
@@ -248,10 +301,23 @@ const DatoSaludIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(68, 79)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
             .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./salud.json'),
+                datasources: {},})
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }else{
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse(); 
+        }
+        
     }
 };
 
@@ -275,7 +341,9 @@ const DatoMexicoIntentHandler = {
                 .reprompt('No te entendi, ¿Quieres saber mas?').
                 getResponse();
         }else{
-            return handlerInput.responseBuilder.speak(speechText).reprompt('No te entendi, ¿Quieres saber mas?').getResponse();
+            return handlerInput.responseBuilder.speak(speechText)
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
         }
     }
 
@@ -294,6 +362,11 @@ const DatoArgentinaIntentHandler = {
         if(supportsAPL(handlerInput)){
           return handlerInput.responseBuilder
               .speak(speechText)
+              .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./argentinos.json'),
+                datasources: {},})
               .addDirective({
                   type: 'Alexa.Presentation.APL.RenderDocument',
                   version: '1.0',
@@ -318,10 +391,24 @@ const DatoEstadosUnidosIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(79, 92)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                version: '1.0',
+                document: require('./americanos.json'),
+                datasources: {},})
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
+        }else{
+            return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }
+        
     }
 };
 const DatoInglaterraIntentHandler = {
@@ -332,10 +419,19 @@ const DatoInglaterraIntentHandler = {
     handle(handlerInput) {
         num = getRandomInt(79, 92)
         const speechText = dato[num] + '... ¿Quieres saber mas?';
-        return handlerInput.responseBuilder
+        if (supportsAPL(handlerInput)){
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            
+            .reprompt('No te entendi, ¿Quieres saber mas?')
+            .getResponse();
+        }else{
+            return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt('No te entendi, ¿Quieres saber mas?')
             .getResponse();
+        }
+        
     }
 };
 
