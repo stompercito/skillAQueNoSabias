@@ -29,7 +29,7 @@
                         "opacity": 100,
                         "width": "100%",
                         "height": "100%",
-                        "source": "https://api-vamos-a-aprender.s3.amazonaws.com/ArgentinaFondo.png",
+                        "source": "https://api-vamos-a-aprender.s3.amazonaws.com/QuimicaFondo.png",
                         "scale": "best-fill",
                         "align": "center",
                         "overlayColor": "rgba(0, 0, 0, 0.6)"
@@ -52,16 +52,16 @@
                                 "paddingBottom": "12dp",
                                 "textAlign": "center",
                                 "textAlignVertical": "center",
-                                "fontSize": "40dp",
-                                "text": "¡Argentinos en la ciencia!",
+                                "fontSize": "60dp",
+                                "text": "Aletza Science",
                                 "top": "100",
-                                "right": "15"
+                                "right": "25"
                             },
                             {
                                 "type": "Image",
                                 "width": "350dp",
                                 "height": "350dp",
-                                "source": "https://api-vamos-a-aprender.s3.amazonaws.com/Argentina.png",
+                                "source": "https://api-vamos-a-aprender.s3.amazonaws.com/Logo.jpg",
                                 "scale": "best-fill",
                                 "align": "center",
                                 "left": "550",

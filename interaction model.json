@@ -1,0 +1,235 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "a que no sabías",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "suficiente",
+                        "silencio",
+                        "basta",
+                        "callate",
+                        "cancelar"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "necesito ayuda",
+                        "me perdi ",
+                        "me confundi",
+                        "no entiendo ",
+                        "ayuda"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "adiós",
+                        "no",
+                        "salir",
+                        "nos vemos",
+                        "ya me canse",
+                        "adios",
+                        "detente"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "DimeMasIntent",
+                    "slots": [],
+                    "samples": [
+                        "claro",
+                        "si",
+                        "saber más",
+                        "cuéntame más",
+                        "más"
+                    ]
+                },
+                {
+                    "name": "CategoriasIntent",
+                    "slots": [
+                        {
+                            "name": "categoria",
+                            "type": "categorias"
+                        }
+                    ],
+                    "samples": [
+                        "dime un dato {categoria}",
+                        "deseo un dato acerca de {categoria}",
+                        "dime un dato curiosos sobre {categoria}",
+                        "quiero un dato de {categoria}",
+                        "cuentame un dato de {categoria}",
+                        "mencioname un dato de {categoria}",
+                        "dame un dato de {categoria}",
+                        "{categoria}",
+                        "dime un dato de la {categoria}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "categorias",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "inglaterra"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ingleses"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "estadounidenses"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "estados unidos"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "americanos"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "argentinos"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "argentina"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mexicanos"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "méxico"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bienestar"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "salud"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "matematicas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "matemáticas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "matemática"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "astronomia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "universo"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "astronomía"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quimica"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "química"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "biologia"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "naturaleza"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "naturales"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "aleatorio"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "al azar"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CategoriasIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "categoria",
+                            "type": "categorias",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.581787145142.1266499976831"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.581787145142.1266499976831",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tienes que decirme una categoría o pedirme un dato aleatorio... puedes decirme ayuda y te explicare como pedir un dato curioso."
+                    }
+                ]
+            }
+        ]
+    }
+}

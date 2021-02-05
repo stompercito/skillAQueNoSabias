@@ -29,7 +29,7 @@
                         "opacity": 100,
                         "width": "100%",
                         "height": "100%",
-                        "source": "https://tarea1web.s3.amazonaws.com/Captura.JPG",
+                        "source": "https://api-vamos-a-aprender.s3.amazonaws.com/NaturalezaFondo.png",
                         "scale": "best-fill",
                         "align": "center",
                         "overlayColor": "rgba(0, 0, 0, 0.6)"
@@ -60,15 +60,15 @@
                             {
                                 "type": "Image",
                                 "width": "350dp",
-                                "height": "350dp",
-                                "source": "https://tarea1web.s3.amazonaws.com/Captura.JPG",
+                                "height": "400dp",
+                                "source": "https://api-vamos-a-aprender.s3.amazonaws.com/Naturaleza.png",
                                 "scale": "best-fill",
                                 "align": "center",
                                 "left": "550",
-                                "bottom": "120"
+                                "bottom": "150"
                             }
                         ],
-                        "bottom": "425"
+                        "bottom": "475"
                     }
                 ]
             }
